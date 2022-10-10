@@ -1,0 +1,35 @@
+/* stylelint-disable property-no-vendor-prefix */
+.tableWrapper {
+  position: absolute;
+  bottom: 0;
+  z-index: 1000;
+  // width: 500px;
+  // max-width: 100%;
+  overflow: hidden;
+  background: red;
+
+  .tableInner {
+    width: 100vw;
+    overflow: scroll;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: whitesmoke;
+
+    tbody {
+      tr {
+        .tableHead {
+          width: 100px;
+          padding: 5px 10px;
+          font-size: 20px;
+        }
+
+        td {
+          width: 100px;
+        }
+      }
+    }
+  }
+}

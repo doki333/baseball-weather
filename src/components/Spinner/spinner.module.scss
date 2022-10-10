@@ -1,0 +1,71 @@
+@use '/src/styles/constants/colors';
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+.spinWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+
+  p {
+    position: absolute;
+    z-index: 1000;
+    font-size: 18px;
+  }
+
+  .spinner {
+    position: relative;
+    width: 125px;
+    height: 125px;
+    background: linear-gradient(colors.$SPINNER_RED, colors.$SPINNER_BLUE, colors.$SPINNER_MINT);
+    border-radius: 50%;
+    animation: animate 1.2s linear infinite;
+
+    span {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(colors.$SPINNER_RED, colors.$SPINNER_BLUE, colors.$SPINNER_MINT);
+      border-radius: 50%;
+
+      &:nth-child(1) {
+        filter: blur(5px);
+      }
+
+      &:nth-child(2) {
+        filter: blur(10px);
+      }
+
+      &:nth-child(3) {
+        filter: blur(25px);
+      }
+
+      &:nth-child(4) {
+        filter: blur(50px);
+      }
+
+      &::after {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        content: '';
+        background: #f1f1f1;
+        border: 10px solid colors.$WHITE;
+        border-radius: 50%;
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+.btnsWrapper {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+
+  // button {
+  //   min-width: 90px;
+  //   padding: 10px 20px;
+  //   font-size: 16px;
+  //   background: aliceblue;
+  // }
+
+  .selectorBtn {
+    position: relative;
+    width: 75px;
+    padding: 5px 20px 5px 3px;
+    background: aliceblue;
+    border: 2px solid #62b6ff;
+    border-radius: 10px;
+
+    &:after {
+      position: absolute;
+      right: 5px;
+      width: 15px;
+      height: 15px;
+      font-size: 16px;
+      line-height: 18px;
+      color: grey;
+      content: '▴';
+    }
+
+    &.isVisible {
+      outline: 3px solid #a9d7ff;
+
+      &:after {
+        position: absolute;
+        right: 5px;
+        width: 15px;
+        height: 15px;
+        font-size: 16px;
+        line-height: 18px;
+        color: grey;
+        content: '▾';
+      }
+    }
+  }
+
+  .btnList {
+    margin-top: 8px;
+    padding: 5px;
+    border-radius: 10px;
+    background: aliceblue;
+
+    button {
+      width: 100%;
+      padding: 5px 10px;
+      border-radius: 5px;
+
+      &:hover {
+        background: #a9d7ff;
+      }
+    }
+  }
+
+  .selector {
+    background: red;
+  }
+}

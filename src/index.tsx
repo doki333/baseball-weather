@@ -1,13 +1,29 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
 import App from './routes'
 import reportWebVitals from './reportWebVitals'
 import './styles/index.scss'
+import Spinner from 'components/Spinner/Spinner'
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+      useErrorBoundary: true,
+    },
+  },
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <Suspense fallback={<Spinner />}>
+        <App />
+      </Suspense>
+    </QueryClientProvider>
   </React.StrictMode>
 )
 
