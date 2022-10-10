@@ -6,12 +6,12 @@ import App from './routes'
 import reportWebVitals from './reportWebVitals'
 import './styles/index.scss'
 import Spinner from 'components/Spinner/Spinner'
+import { RecoilRoot } from 'recoil'
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       suspense: true,
-      useErrorBoundary: true,
     },
   },
 })
@@ -21,7 +21,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<Spinner />}>
-        <App />
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
       </Suspense>
     </QueryClientProvider>
   </React.StrictMode>

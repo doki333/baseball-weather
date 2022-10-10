@@ -1,3 +1,5 @@
+@use '/src/styles/constants/colors';
+
 .btnsWrapper {
   position: absolute;
   top: 10px;
@@ -6,66 +8,72 @@
   display: flex;
   flex-direction: column;
 
-  // button {
-  //   min-width: 90px;
-  //   padding: 10px 20px;
-  //   font-size: 16px;
-  //   background: aliceblue;
-  // }
-
   .selectorBtn {
     position: relative;
     width: 75px;
     padding: 5px 20px 5px 3px;
-    background: aliceblue;
-    border: 2px solid #62b6ff;
+    background: colors.$SELECTOR_LIGHT;
+    border: 2px solid colors.$SELECTOR_DARKER;
     border-radius: 10px;
 
-    &:after {
+    &::after {
       position: absolute;
       right: 5px;
       width: 15px;
       height: 15px;
       font-size: 16px;
       line-height: 18px;
-      color: grey;
+      color: colors.$GRAY80;
       content: '▴';
     }
 
     &.isVisible {
-      outline: 3px solid #a9d7ff;
+      outline: 3px solid colors.$SELECTOR_MEDIUM;
 
-      &:after {
+      &::after {
         position: absolute;
         right: 5px;
         width: 15px;
         height: 15px;
         font-size: 16px;
         line-height: 18px;
-        color: grey;
+        color: colors.$GRAY80;
         content: '▾';
       }
     }
   }
 
   .btnList {
-    margin-top: 8px;
     padding: 5px;
+    margin-top: 8px;
+    background: colors.$SELECTOR_LIGHT;
     border-radius: 10px;
-    background: aliceblue;
 
-    button {
+    .listBtn {
+      position: relative;
       width: 100%;
       padding: 5px 10px;
       border-radius: 5px;
 
       &:hover {
-        background: #a9d7ff;
+        background: colors.$SELECTOR_MEDIUM;
+      }
+
+      &:active {
+        background: colors.$SELECTOR_MEDIUM;
       }
     }
-  }
 
-  .selector {
-    background: red;
+    .isHere {
+      &::before {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 10px;
+        height: 10px;
+        font-size: 16px;
+        content: '📍';
+      }
+    }
   }
 }

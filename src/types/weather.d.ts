@@ -34,3 +34,11 @@ export interface IObj1Types {
 export interface ITableTypes {
   data: IDataTypes[]
 }
+
+export interface IPosTypes {
+  title: string
+  region: string
+  lat: number
+  lng: number
+  latlng: number[]
+}

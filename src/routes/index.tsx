@@ -9,16 +9,14 @@ import dfsXyConv from 'utils/dfsXyConv'
 import { getData } from 'utils/getData'
 
 import styles from './index.module.scss'
-
-const imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png'
-
-const { kakao } = window as any
+import { IPosTypes } from 'types/weather'
 
 const App = () => {
   const [location, setLocation] = useState<[] | number[]>([])
   const [mapCenter, setMapCenter] = useState<number[]>([36.11854456321755, 128.02188131960543])
   const [mapLevel, setMapLevel] = useState(13)
   const [isVisible, setIsVisible] = useState(false)
+  const [region, setRegion] = useState('지역')
 
   const { data } = useQuery(['weather', location], () => getData(location), {
     enabled: location.length !== 0,
@@ -29,7 +27,7 @@ const App = () => {
   })
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    const { latitude, longitude } = e.currentTarget.dataset
+    const { latitude, longitude, reig } = e.currentTarget.dataset
     const { x, y } = dfsXyConv(Number(latitude), Number(longitude))
 
     if (x && y) {
@@ -38,10 +36,22 @@ const App = () => {
 
     setIsVisible((prev) => !prev)
 
-    if (latitude && longitude) {
+    if (latitude && longitude && reig) {
       setMapLevel(2)
       setMapCenter([Number(latitude), Number(longitude)])
+      setRegion(reig)
     }
+  }
+
+  const handleClickMarker = (pos: IPosTypes) => {
+    const { x, y } = dfsXyConv(Number(pos.lat), Number(pos.lng))
+    if (x && y) {
+      setLocation([x, y])
+    }
+    setIsVisible((prev) => !prev)
+    setMapLevel(2)
+    setMapCenter([Number(pos.lat), Number(pos.lng)])
+    setRegion(pos.region)
   }
 
   const handleWeatherClick = () => {
@@ -50,11 +60,11 @@ const App = () => {
 
   return (
     <div className={styles.appWrapper}>
-      <Map mapLevel={mapLevel} mapCenter={mapCenter} />
+      <Map mapLevel={mapLevel} mapCenter={mapCenter} handleClickMarker={handleClickMarker} />
       <button type='button' className={styles.goBtn} onClick={handleWeatherClick}>
         🌐
       </button>
-      <WeatherBtns handleClick={handleClick} isClicked={isVisible} setIsClicked={setIsVisible} />
+      <WeatherBtns handleClick={handleClick} region={region} isClicked={isVisible} setIsClicked={setIsVisible} />
       {data && <DataTable data={data} />}
     </div>
   )

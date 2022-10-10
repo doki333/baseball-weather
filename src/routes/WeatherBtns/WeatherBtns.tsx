@@ -7,9 +7,10 @@ interface IWeatherBtns {
   handleClick: (e: MouseEvent<HTMLButtonElement>) => void
   isClicked: boolean
   setIsClicked: Dispatch<SetStateAction<boolean>>
+  region: string
 }
 
-const WeatherBtns = ({ handleClick, isClicked, setIsClicked }: IWeatherBtns) => {
+const WeatherBtns = ({ handleClick, isClicked, setIsClicked, region }: IWeatherBtns) => {
   const handleClickSelector = () => {
     setIsClicked((prev) => !prev)
   }
@@ -20,13 +21,20 @@ const WeatherBtns = ({ handleClick, isClicked, setIsClicked }: IWeatherBtns) => 
         type='button'
         onClick={handleClickSelector}
       >
-        📍 지역
+        ⚾지역
       </button>
       {isClicked && (
         <ul className={styles.btnList}>
           {baseballStadiums.map((lists) => (
             <li key={lists.region}>
-              <button type='button' onClick={handleClick} data-latitude={lists.lat} data-longitude={lists.lng}>
+              <button
+                type='button'
+                onClick={handleClick}
+                className={cx(styles.listBtn, { [styles.isHere]: region === lists.region })}
+                data-reig={lists.region}
+                data-latitude={lists.lat}
+                data-longitude={lists.lng}
+              >
                 {lists.region}
               </button>
             </li>
@@ -38,3 +46,5 @@ const WeatherBtns = ({ handleClick, isClicked, setIsClicked }: IWeatherBtns) => 
 }
 
 export default WeatherBtns
+
+// className={cx(styles.listBtn, { [styles.isHere]: newRegion === lists.region })}

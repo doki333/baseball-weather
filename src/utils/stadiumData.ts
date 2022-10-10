@@ -1,4 +1,6 @@
-export const baseballStadiums = [
+import { IPosTypes } from 'types/weather'
+
+export const baseballStadiums: IPosTypes[] = [
   // 위도, 경도순
   {
     title: '잠실야구장',
