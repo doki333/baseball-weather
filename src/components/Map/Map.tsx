@@ -26,10 +26,10 @@ const Map = ({ mapLevel, mapCenter, handleClickMarker }: IMap) => {
       center: new kakao.maps.LatLng(36.11854456321755, 128.02188131960543),
       level: 13,
     })
-
     isLoaded = true
 
     map.setMaxLevel(13)
+
     setKakaoMap(map)
   }, [mapRef])
 

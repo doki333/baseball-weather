@@ -46,5 +46,3 @@ const WeatherBtns = ({ handleClick, isClicked, setIsClicked, region }: IWeatherB
 }
 
 export default WeatherBtns
-
-// className={cx(styles.listBtn, { [styles.isHere]: newRegion === lists.region })}

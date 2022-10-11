@@ -1,33 +1,80 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/responsive' as responsive;
+
 /* stylelint-disable property-no-vendor-prefix */
-.tableWrapper {
+.dataWrapper {
   position: absolute;
   bottom: 0;
   z-index: 1000;
-  // width: 500px;
-  // max-width: 100%;
-  overflow: hidden;
-  background: red;
+  display: flex;
+  width: 75%;
+  min-width: 280px;
+  // min-width: 100%;
+  overflow-x: scroll;
+  text-align: center;
 
-  .tableInner {
-    width: 100vw;
-    overflow: scroll;
-    text-align: center;
+  @include responsive.mobileOnly {
+    width: 100%;
+    min-width: 280px;
+  }
+
+  .titleWrapper {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background: whitesmoke;
+    background: colors.$SELECTOR_MEDIUM;
+
+    li {
+      padding: 6px 10px;
+      word-break: keep-all;
+    }
+  }
+
+  .tableInner {
+    display: block;
+    width: 100%;
+    min-width: 200px;
+    max-width: 1000px;
+    overflow-x: scroll;
+    border-collapse: collapse;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: colors.$SELECTOR_LIGHT;
 
     tbody {
       tr {
-        .tableHead {
-          width: 100px;
-          padding: 5px 10px;
-          font-size: 20px;
-        }
+        width: 100%;
 
         td {
-          width: 100px;
+          width: 100%;
+          min-width: 165px;
+          padding: 6px 10px;
+          word-break: keep-all;
+          border-right: 3px double colors.$GRAY80;
+
+          &:last-child {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include responsive.mobileOnly {
+  .dataWrapper {
+    width: 100%;
+    min-width: 280px;
+
+    .tableInner {
+      tbody {
+        tr {
+          td {
+            min-width: 115px;
+          }
         }
       }
     }

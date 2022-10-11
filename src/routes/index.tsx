@@ -1,4 +1,4 @@
-import { useRef, MouseEvent, useState, ChangeEvent } from 'react'
+import { MouseEvent, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import Map from 'components/Map/Map'
@@ -7,9 +7,9 @@ import WeatherBtns from './WeatherBtns/WeatherBtns'
 
 import dfsXyConv from 'utils/dfsXyConv'
 import { getData } from 'utils/getData'
+import { IPosTypes } from 'types/weather'
 
 import styles from './index.module.scss'
-import { IPosTypes } from 'types/weather'
 
 const App = () => {
   const [location, setLocation] = useState<[] | number[]>([])
@@ -34,7 +34,7 @@ const App = () => {
       setLocation([x, y])
     }
 
-    setIsVisible((prev) => !prev)
+    setIsVisible(false)
 
     if (latitude && longitude && reig) {
       setMapLevel(2)
@@ -48,7 +48,7 @@ const App = () => {
     if (x && y) {
       setLocation([x, y])
     }
-    setIsVisible((prev) => !prev)
+    setIsVisible(false)
     setMapLevel(2)
     setMapCenter([Number(pos.lat), Number(pos.lng)])
     setRegion(pos.region)
@@ -62,7 +62,8 @@ const App = () => {
     <div className={styles.appWrapper}>
       <Map mapLevel={mapLevel} mapCenter={mapCenter} handleClickMarker={handleClickMarker} />
       <button type='button' className={styles.goBtn} onClick={handleWeatherClick}>
-        🌐
+        <span>🌐</span>
+        기상청
       </button>
       <WeatherBtns handleClick={handleClick} region={region} isClicked={isVisible} setIsClicked={setIsVisible} />
       {data && <DataTable data={data} />}
