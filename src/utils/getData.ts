@@ -19,8 +19,8 @@ function getFilteredData(arr: IResultTypes[], keyword: string) {
 
 export async function getData(numArr: number[]) {
   const [x, y] = numArr
-  const url = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst`
-  const PROXY = window.location.hostname === 'localhost' ? `${url}` : '/proxy'
+  const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy'
+  // const url = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst`
 
   const NOW_HOUR = dayjs(new Date()).format('HH')
   const NOW_MINUTE = dayjs(new Date()).format('mm')
@@ -32,7 +32,7 @@ export async function getData(numArr: number[]) {
   }
 
   try {
-    const res = await axios.get(PROXY, {
+    const res = await axios.get(`${PROXY}`, {
       params: {
         serviceKey: `${process.env.REACT_APP_WEATHER_KEY}`,
         numOfRows: 60,
