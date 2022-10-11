@@ -3,13 +3,12 @@
 
 /* stylelint-disable property-no-vendor-prefix */
 .dataWrapper {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   z-index: 1000;
   display: flex;
   width: 75%;
   min-width: 280px;
-  // min-width: 100%;
   overflow-x: scroll;
   text-align: center;
 
@@ -42,7 +41,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background: colors.$SELECTOR_LIGHT;
+    background: colors.$WHITE;
 
     tbody {
       tr {
