@@ -62,6 +62,6 @@ export async function getData(numArr: number[]) {
       }
     })
   } catch (error) {
-    throw new Error('오류가 발생했습니다')
+    throw new Error(`에러가 발생했습니다`, { cause: error })
   }
 }
