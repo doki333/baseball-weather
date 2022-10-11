@@ -19,7 +19,8 @@ function getFilteredData(arr: IResultTypes[], keyword: string) {
 
 export async function getData(numArr: number[]) {
   const [x, y] = numArr
-  const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy'
+  const PROXY =
+    window.location.hostname === 'localhost' ? 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0' : '/proxy'
 
   const NOW_HOUR = dayjs(new Date()).format('HH')
   const NOW_MINUTE = dayjs(new Date()).format('mm')
@@ -31,7 +32,7 @@ export async function getData(numArr: number[]) {
   }
 
   try {
-    const res = await axios.get(`${PROXY}`, {
+    const res = await axios.get(`${PROXY}/getUltraSrtFcst`, {
       params: {
         serviceKey: `${process.env.REACT_APP_WEATHER_KEY}`,
         numOfRows: 60,
@@ -61,7 +62,7 @@ export async function getData(numArr: number[]) {
         PTY: getFilteredData(filtered, 'PTY'), // 강수형태
       }
     })
-  } catch (error) {
-    throw new Error(`에러가 발생했습니다`, { cause: error })
+  } catch (error: unknown) {
+    throw new Error('에러가 발생했습니다')
   }
 }
