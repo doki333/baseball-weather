@@ -1,5 +1,5 @@
 [[redirects]]
-from = "/proxy/*"
-  to = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/:splat"  
+from = "/proxy"
+  to = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst/:splat"  
   status = 200
   force = true
