@@ -18,10 +18,25 @@
 - classnames : 조건부 클래스네임 지정   
 - dayjs : 날짜 관련 라이브러리   
 - react-indiana-drag-scroll : 가로 스크롤   
-- recoil : 전역 상태 관리   
+- recoil : 전역 상태 관리    
 
-4. 폴더구조   
-- 추후 수정   
+4. 폴더구조    
+
+````     
+├─components        
+│  ├─Map     
+│  └─Spinner      
+├─recoil       
+├─routes      
+│  ├─DataTable          
+│  └─WeatherBtns      
+├─styles      
+│  ├─base      
+│  ├─constants     
+│  └─mixins     
+├─types        
+└─utils      
+````
 
 5. 어려웠던 점 및 개선할 점   
 - kakaoMap api가 자바스크립트 + html로 작성하도록 되어 있어서 react에 적용하는 것이 어려웠습니다. 특히 Strict Mode로 인해 맵이 두번 만들어져 확대, 축소시에 기존의 맵이 남아 있어서 줌이 자연스럽지 않았습니다. 그래서 플래그 변수 값을 두고, 그 값이 바뀌면 맵이 두번 만들어지지 않도록 하였습니다.   
